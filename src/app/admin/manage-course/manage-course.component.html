@@ -1,0 +1,91 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+
+<app-sidebar></app-sidebar>
+<div class="body-wrapper" >
+<div class="col-lg-8 d-flex align-items-stretch" style="width: 100%; font-size: 15px;overflow-x: hidden; margin-top:70px" >
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">All Courses</h5>
+        <button mat-button (click)="openCreateDailog()">Add New </button>
+        <div class="table-responsive">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Course Id</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Course Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Categopry</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Image</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Operations </h6>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let course of home.courses">
+              <td>{{course.courseid}}</td>
+              <td>{{course.coursename}}</td>
+              <td>{{course.categoryid}}</td>
+              <td><img src="../../../assets/Images/{{course.imagename}}"></td>
+              <td><button class="btn btn-danger m-1" (click)="deleteCourse(course.courseid)">Delete</button>
+                <button class="btn btn-primary m-1" (click)="updateDailog(course)">Update</button>
+            </td>
+              </tr>                       
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<ng-template #callDeleteDailog>
+
+<h1 mat-dialog-title>Delete Course</h1>
+<div mat-dialog-content>Are you sure you went to delete this item ?</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close="yes">Yes</button>
+  <button mat-button mat-dialog-close="no">No</button>
+</div>
+</ng-template>
+
+
+<ng-template #callupdateDailog>
+
+  <h2 mat-dialog-title>Update Course</h2>
+<mat-dialog-content class="mat-typography">
+  
+    <form  [formGroup]="updateForm" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Course Name </mat-label>
+          <input type="text" matInput formControlName="coursename"
+           [(ngModel)]="p_data.coursename" >
+        </mat-form-field>
+        <br>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Course Category </mat-label>
+            <input type="number" matInput formControlName="categoryid" [(ngModel)]="p_data.categoryid">
+          </mat-form-field>
+            <br>
+
+            <input type="file" #file formControlName="imagename" (change)="uploadImage(file.files)">
+
+         
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updatedCourse()">Update</button>
+</mat-dialog-actions>
+
+
+</ng-template>

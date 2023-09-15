@@ -1,0 +1,18 @@
+.main-nav {
+    position: relative;
+    z-index: 999;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    flex: 1 1 100%;
+    background-color: #f8f8f9;
+    padding: 5px 0px;
+   
+}
+.main-nav .my-nav .menu ul li a {
+    color: #090909;
+    padding: 10px 17px;
+    font-weight: 600;
+}

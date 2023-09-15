@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Create Course</h2>
+<mat-dialog-content class="mat-typography">
+  
+    <form  [formGroup]="createCourse" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Course Name </mat-label>
+          <input type="text" matInput formControlName="Coursename">
+          <mat-error *ngIf="createCourse.controls['Coursename'].hasError('required')">
+            Course Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Course Category </mat-label>
+            <input type="number" matInput formControlName="Categoryid">
+            <mat-error *ngIf="createCourse.controls['Categoryid'].hasError('required')">
+              Course Category is required
+            </mat-error>
+          </mat-form-field>
+
+
+
+<!-- 
+          <mat-form-field class="example-full-width">
+            <mat-label>Start Date </mat-label>
+            <input type="date" matInput formControlName="startdate">
+            <mat-error *ngIf="createCourse.controls['startdate'].hasError('required')">
+                Start Date is required
+            </mat-error>
+          </mat-form-field>
+
+
+
+          <mat-form-field class="example-full-width">
+            <mat-label>End Date </mat-label>
+            <input type="date" matInput formControlName="enddate">
+            <mat-error *ngIf="createCourse.controls['enddate'].hasError('required')">
+                End Date is required
+            </mat-error>
+          </mat-form-field> -->
+
+          <input type="file" #file formControlName="imagename" (change)="uploadImage(file.files)">
+
+
+      </form>
+
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+</mat-dialog-actions>
+

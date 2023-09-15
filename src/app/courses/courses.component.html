@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<div class="row">
+    <app-course-card class="col-4" 
+    *ngFor="let obj of home.courses"
+    [course_Id]="obj.courseid"
+    [course_Name]="obj.coursename"
+    [category_Id]="obj.categoryid"
+    [image_Name]="obj.imagename"
+    (openProfile)="goToProfile()"
+    > </app-course-card>
+</div>
+
+<app-footer></app-footer>
